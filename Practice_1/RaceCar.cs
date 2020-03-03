@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Practice_1
+﻿namespace Practice_1
 {
     class RaceCar : Car
     {
@@ -14,8 +10,8 @@ namespace Practice_1
         /// <summary>
         /// Construct for creating new model of Car
         /// </summary>
-        /// <param name="modelOfCar"></param>
-        /// <param name="maxSpeed"></param>
+        /// <param name="modelOfCar">Choose the model of car from enum "modelOfCar"</param>
+        /// <param name="maxSpeed">Max speed for car to win the race</param>
         public RaceCar(ModelOfCar modelOfCar, int maxSpeed)
         {
             ModelOfCar = modelOfCar;

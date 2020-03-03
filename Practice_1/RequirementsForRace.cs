@@ -6,7 +6,7 @@ namespace Practice_1
 {
     class RequirementsForRace
     {
-        public int MinYearForCar { get; set; } = 1980;
+        public int MinYearForCar { get; set; } = 1900;
         public int MinSpeedForCar { get; set; } = 50;
 
         /// <summary>

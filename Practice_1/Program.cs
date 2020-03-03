@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading;
 
 namespace Practice_1
 {
@@ -10,49 +12,61 @@ namespace Practice_1
         {
             Console.WriteLine("Welcome to the Crazy-Race-Game!");
 
-            var car1 = new RaceCar(ModelOfCar.Ford ,maxSpeed: random.Next(1, 200));
+            var car1 = new RaceCar(ModelOfCar.Ford ,maxSpeed: random.Next(0,200));
             car1.Driver = new Driver()
             {
                 Name = "Player_1",
                 SkillLevel = 80.0
             };
 
-            var car2 = new RaceCar(ModelOfCar.Lexus, maxSpeed: random.Next(1, 200));
+            var car2 = new RaceCar(ModelOfCar.Lexus, maxSpeed: random.Next(0, 200));
             car2.Driver = new Driver()
             {
                 Name = "Player_2",
                 SkillLevel = 75.0
             };
+            RequirementsForRace rq = new RequirementsForRace(1890, 20);
 
-            Driver d1 = new Driver();
+            RaceGamePlay rgp = new RaceGamePlay();
+            rgp.Notify += DisplayMessage;
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            var raceResults = rgp.LetStartRace(car1, car2, rq);
+            if (raceResults.IsSuccess)
+            {
+                
+                if (raceResults.IsTie)
+                {
+                    DisplayMessage("There was a tie between the Following drivers.");
+                    raceResults.raceCarsList.ForEach(c => Console.Write(String.Format(" {0} ", c.Driver.Name)));
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.Write(String.Format("Congratulations to {0}, the winner of this race.", raceResults.WinningRaceCar.Driver.Name));
+                    Console.WriteLine();
+                }
+            }
+            else
+            {
+                Console.WriteLine("The race was not successful.");
+                Console.WriteLine(raceResults.FailedRaceInformation);
+                Console.WriteLine();
+            }
 
-            Race rc = new Race();
-
-            RequirementsForRace rq = new RequirementsForRace(1900, 50);
-
-            rc.Notify += DisplayMessage;
-            rc.ToStart(car1.Driver);
-            rc.ToStart(car2.Driver);
-
-            rc.LetStartRace(car1, car2, rq);
-
-            Console.WriteLine(car1.MaxSpeed.ToString());
-            Console.WriteLine(car2.MaxSpeed.ToString());
-
-            //if(car2.MaxSpeed < car1.MaxSpeed)
-            //    Console.WriteLine("car1 win !");
-            //else
-            //    Console.WriteLine("car 2 win!");
-           
-            
-
-
+            Thread.Sleep(1000);
+            stopWatch.Stop();
+            Console.WriteLine();
+            Console.WriteLine(String.Format("This race took {0} milliseconds.", stopWatch.ElapsedMilliseconds));
+            Console.WriteLine();
 
         }
 
         private static void DisplayMessage(string message)
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
