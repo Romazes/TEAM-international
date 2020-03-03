@@ -4,23 +4,22 @@ using System.Text;
 
 namespace Practice_1
 {
-    enum ModelOfCar
-    {
-        Ford,
-        Lexus,
-        Mitsubishi,
-        Lamborghini
-    }
-
     class RaceCar : Car
     {
         public ModelOfCar ModelOfCar { get; set; }
-        public int Speed { get; set; }
+        public int MaxSpeed { get; set; }
+        public int Year { get; set; } = 1999;
+        public Driver Driver { get; set; }
 
-        public RaceCar(ModelOfCar modelOfCar, int speed)
+        /// <summary>
+        /// Construct for creating new model of Car
+        /// </summary>
+        /// <param name="modelOfCar"></param>
+        /// <param name="maxSpeed"></param>
+        public RaceCar(ModelOfCar modelOfCar, int maxSpeed)
         {
             ModelOfCar = modelOfCar;
-            Speed = speed;
+            MaxSpeed = maxSpeed;
         }
     }
 }
