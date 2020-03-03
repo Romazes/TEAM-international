@@ -12,7 +12,7 @@ namespace Practice_1
         {
             Console.WriteLine("Welcome to the Crazy-Race-Game!");
 
-            var car1 = new RaceCar(ModelOfCar.Ford ,maxSpeed: random.Next(0,200));
+            var car1 = new RaceCar(ModelOfCar.Ford, maxSpeed: random.Next(0, 200));
             car1.Driver = new Driver()
             {
                 Name = "Player_1",
@@ -28,22 +28,22 @@ namespace Practice_1
             RequirementsForRace rq = new RequirementsForRace(1890, 20);
 
             RaceGamePlay rgp = new RaceGamePlay();
-            rgp.Notify += DisplayMessage;
+            rgp.Notify += new RaceGamePlay.OutputInfo(DisplayBlueMessage);
             var stopWatch = new Stopwatch();
             stopWatch.Start();
             var raceResults = rgp.LetStartRace(car1, car2, rq);
             if (raceResults.IsSuccess)
             {
-                
+
                 if (raceResults.IsTie)
                 {
-                    DisplayMessage("There was a tie between the Following drivers.");
+                    DisplayBlueMessage("There was a tie between the Following drivers.");
                     raceResults.raceCarsList.ForEach(c => Console.Write(String.Format(" {0} ", c.Driver.Name)));
                     Console.WriteLine();
                 }
                 else
                 {
-                    Console.Write(String.Format("Congratulations to {0}, the winner of this race.", raceResults.WinningRaceCar.Driver.Name));
+                    DisplayBlueMessage($"Congratulations to {raceResults.WinningRaceCar.Driver.Name}, the winner of this race.");
                     Console.WriteLine();
                 }
             }
@@ -53,7 +53,6 @@ namespace Practice_1
                 Console.WriteLine(raceResults.FailedRaceInformation);
                 Console.WriteLine();
             }
-
             Thread.Sleep(1000);
             stopWatch.Stop();
             Console.WriteLine();
@@ -62,11 +61,12 @@ namespace Practice_1
 
         }
 
-        private static void DisplayMessage(string message)
+        private static void DisplayBlueMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(message);
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
         }
+
     }
 }

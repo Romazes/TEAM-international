@@ -17,7 +17,7 @@ namespace Practice_1
                 raceCar1, raceCar2
             }))
             {
-                result = this.DetermineWinner(raceCar1, raceCar2);
+                result = DetermineWinner(raceCar1, raceCar2);
             }
             else
             {
@@ -29,7 +29,7 @@ namespace Practice_1
 
         private Race DetermineWinner(RaceCar raceCar1, RaceCar raceCar2)
         {
-            
+
             var result = new Race();
             if (raceCar1 != null && raceCar2 != null)
             {
@@ -68,9 +68,16 @@ namespace Practice_1
         private bool ValidateCarsForRace(RequirementsForRace requirements, List<RaceCar> raceCars)
         {
             var result = true;
-            var inValidCars = raceCars.Where(c => c.MaxSpeed < requirements.MinSpeedForCar |
-                                                  c.Year < requirements.MinYearForCar).ToList();
-            result = inValidCars.Any() == false;
+            try
+            {
+                var inValidCars = raceCars.Where(c => c.MaxSpeed < requirements.MinSpeedForCar |
+                                                      c.Year < requirements.MinYearForCar).ToList();
+                result = inValidCars.Any() == false;
+            }
+            catch (Exception ex)
+            {
+                Notify?.Invoke($"{ex.Message}");
+            }
             return result;
         }
     }
