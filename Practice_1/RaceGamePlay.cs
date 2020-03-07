@@ -9,15 +9,12 @@ namespace Practice_1
         public delegate void OutputInfo(string message);
         public event OutputInfo Notify;
 
-        public Race LetStartRace(RaceCar raceCar1, RaceCar raceCar2, RequirementsForRace requirementForRace)
+        public Race LetStartRace(List<RaceCar> raceCars, RequirementsForRace requirementForRace)
         {
             var result = new Race();
-            if (this.ValidateCarsForRace(requirementForRace, new List<RaceCar>
+            if (this.ValidateCarsForRace(requirementForRace, raceCars))
             {
-                raceCar1, raceCar2
-            }))
-            {
-                result = DetermineWinner(raceCar1, raceCar2);
+                result = DetermineWinner(raceCars);
             }
             else
             {
@@ -27,19 +24,19 @@ namespace Practice_1
             return result;
         }
 
-        private Race DetermineWinner(RaceCar raceCar1, RaceCar raceCar2)
+        private Race DetermineWinner(List<RaceCar> raceCars)
         {
 
             var result = new Race();
-            if (raceCar1 != null && raceCar2 != null)
+            if (raceCars.Capacity != 0)
             {
-                var racingCars = new List<RaceCar>
-                {
-                raceCar1, raceCar2
-                };
+                var racingCars = new List<RaceCar>(raceCars);
+
                 var winningCar = racingCars.OrderByDescending(c => c.MaxSpeed).ToList()[0];
                 var sameSpeedCars = racingCars.Where(c => c.MaxSpeed == winningCar.MaxSpeed && c.Driver.Name != winningCar.Driver.Name).ToList();
-                Notify?.Invoke($"On start are {raceCar1.Driver.Name} on {raceCar1.ModelOfCar.ToString()}({raceCar1.MaxSpeed}) VS {raceCar2.Driver.Name} on {raceCar2.ModelOfCar.ToString()}({raceCar2.MaxSpeed})");
+                racingCars.ForEach(c => Console.WriteLine(c.Driver.Name));
+               
+                //Notify?.Invoke($"On start are {raceCar1.Driver.Name} on {raceCar1.ModelOfCar.ToString()}({raceCar1.MaxSpeed}) VS {raceCar2.Driver.Name} on {raceCar2.ModelOfCar.ToString()}({raceCar2.MaxSpeed})");
                 if (sameSpeedCars.Any())
                 {
                     result.IsSuccess = true;

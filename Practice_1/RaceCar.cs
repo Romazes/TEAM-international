@@ -1,6 +1,6 @@
 ﻿namespace Practice_1
 {
-    class RaceCar : Car
+    class RaceCar : ICar
     {
         public ModelOfCar ModelOfCar { get; set; }
         public int MaxSpeed { get; set; }
@@ -16,6 +16,15 @@
         {
             ModelOfCar = modelOfCar;
             MaxSpeed = maxSpeed;
+        }
+
+        /// <summary>
+        /// Some info about Driver(s).
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return "Driver: " + Driver.Name + ". His car is " + ModelOfCar + ". Max speed: " + MaxSpeed; 
         }
     }
 }

@@ -1,14 +1,6 @@
 ﻿namespace Practice_1
 {
-    enum ModelOfCar
-    {
-        Ford,
-        Lexus,
-        Mitsubishi,
-        Lamborghini
-    }
-
-    interface Car
+    interface ICar
     {
         public ModelOfCar ModelOfCar { get; set; }
         public int MaxSpeed { get; set; }
