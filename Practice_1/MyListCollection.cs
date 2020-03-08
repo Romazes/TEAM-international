@@ -62,6 +62,16 @@ namespace Practice_1
             return node.Value;
         }
 
+        public void ShowList()
+        {
+            Node<T> current = _head.Next;
+            while (!(current == null))
+            {
+                Console.WriteLine(current.Value);
+                current = current.Next;
+            }
+        }
+
         public void Reverse()
         {
             Node<T> prev = null;

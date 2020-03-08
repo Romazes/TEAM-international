@@ -77,7 +77,34 @@ namespace Practice_1
             stopWatch.Stop();
             Console.WriteLine();
             Console.WriteLine(String.Format("This race took {0} milliseconds.", stopWatch.ElapsedMilliseconds));
-            Console.WriteLine();            
+            Console.WriteLine(new String('-', 70));
+
+            /********************Work with MyCollectionList********************/
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Welcome to the Crazy-Race-Game! (with myCollection)");
+            Console.ResetColor();
+
+            MyListCollection<RaceCar> raceCarsWithMyCollection = new MyListCollection<RaceCar>();
+            var car11 = new RaceCar(ModelOfCar.Lexus, maxSpeed: random.Next(0, 200),
+                                    new Driver { Name = "Player_1", SkillLevel = 80.0 }, 2008);
+
+            var car12 = new RaceCar(ModelOfCar.Mitsubishi, maxSpeed: random.Next(0, 200),
+                                    new Driver { Name = "Player_2", SkillLevel = 75.0 }, 2007);
+
+            raceCarsWithMyCollection.Add(car11);
+            raceCarsWithMyCollection.Add(car12);
+
+            foreach (var item in raceCarsWithMyCollection)
+            {
+                Console.WriteLine(item);
+            }
+
+            if (car11.MaxSpeed > car12.MaxSpeed)
+                DisplayBlueMessage(car11.Driver.Name + " - Win the race !");
+            else
+                DisplayBlueMessage(car12.Driver.Name + " - Win the race !");
+
+
         }
 
         private static void DisplayBlueMessage(string message)
