@@ -12,52 +12,47 @@ namespace Practice_1
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the Crazy-Race-Game!");
-            List<RaceCar> rc = new List<RaceCar>();
 
-            var car1 = new RaceCar(ModelOfCar.Ford, maxSpeed: random.Next(0, 200));
-            car1.Driver = new Driver()
-            {
-                Name = "Player_1",
-                SkillLevel = 80.0
-            };
+            //Create Drivers and his car instances.
+            #region
+            List<RaceCar> raceCars = new List<RaceCar>();
+            var car1 = new RaceCar(ModelOfCar.Ford, maxSpeed: random.Next(0, 200),
+                                    new Driver { Name = "Player_1", SkillLevel = 80.0 }, 2008);
 
-            var car2 = new RaceCar(ModelOfCar.Lexus, maxSpeed: random.Next(0, 200));
-            car2.Driver = new Driver()
-            {
-                Name = "Player_2",
-                SkillLevel = 75.0
-            };
+            var car2 = new RaceCar(ModelOfCar.Lexus, maxSpeed: random.Next(0, 200),
+                                    new Driver { Name = "Player_2", SkillLevel = 75.0 }, 1998);
 
-            var car3 = new RaceCar(ModelOfCar.Lamborghini, maxSpeed: random.Next(0, 200));
-            car3.Driver = new Driver()
-            {
-                Name = "Player_3",
-                SkillLevel = 60.0
-            };
+            var car3 = new RaceCar(ModelOfCar.Lamborghini, maxSpeed: random.Next(0, 200),
+                                    new Driver { Name = "Player_3", SkillLevel = 60.0 });
 
-            var car4 = new RaceCar(ModelOfCar.Mitsubishi, maxSpeed: random.Next(0, 200));
-            car4.Driver = new Driver()
-            {
-                Name = "Player_4",
-                SkillLevel = 50.0
-            };
+            var car4 = new RaceCar(ModelOfCar.Mitsubishi, maxSpeed: random.Next(0, 200),
+                                    new Driver { Name = "Player_4", SkillLevel = 50.0 });
 
-            rc.Add(car1);
-            rc.Add(car2);
-            rc.Add(car3);
-            rc.Add(car4);
-            rc.ForEach(c => Console.WriteLine(c.ToString()));
-            RequirementsForRace rq = new RequirementsForRace(1890, 20);
+            raceCars.Add(car1);
+            raceCars.Add(car2);
+            raceCars.Add(car3);
+            raceCars.Add(car4);
+            raceCars.ForEach(c => Console.WriteLine(c.ToString()));
+            #endregion
 
-            RaceGamePlay rgp = new RaceGamePlay();
-            rgp.Notify += new RaceGamePlay.OutputInfo(DisplayBlueMessage);
+            //Set min requirements for Cars 
+            RequirementsForRace minimalRequirementForRace = new RequirementsForRace(1890, 20);
+            RaceGamePlay playGame = new RaceGamePlay();
+
+            //Invoke Event when can change color and output some info
+            playGame.Notify += new RaceGamePlay.OutputInfo(DisplayBlueMessage);
+
+            //Created instance "StopWatch" to calculate race time.
             var stopWatch = new Stopwatch();
             stopWatch.Start();
-            var raceResultsList = rgp.LetStartRace(rc, rq);
 
+            //Prepared Cars and check his min feature need for race
+            var raceResultsList = playGame.LetStartRace(raceCars, minimalRequirementForRace);
+
+            //If all cars pass requirement, we can start or Game can Finshed with failed
             if (raceResultsList.IsSuccess)
             {
-
+                //If car have the same speed and chance win at Race
                 if (raceResultsList.IsTie)
                 {
                     DisplayBlueMessage("There was a tie between the Following drivers.");
@@ -72,18 +67,17 @@ namespace Practice_1
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("The race was not successful.");
                 Console.WriteLine(raceResultsList.FailedRaceInformation);
+                Console.ResetColor();
                 Console.WriteLine();
             }
             Thread.Sleep(1000);
             stopWatch.Stop();
             Console.WriteLine();
             Console.WriteLine(String.Format("This race took {0} milliseconds.", stopWatch.ElapsedMilliseconds));
-            Console.WriteLine();
-
-            
-
+            Console.WriteLine();            
         }
 
         private static void DisplayBlueMessage(string message)

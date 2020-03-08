@@ -1,4 +1,6 @@
-﻿namespace Practice_1
+﻿using System.Drawing;
+
+namespace Practice_1
 {
     class RaceCar : ICar
     {
@@ -18,13 +20,25 @@
             MaxSpeed = maxSpeed;
         }
 
+        public RaceCar(ModelOfCar modelOfCar, int maxSpeed, Driver driver)
+            : this(modelOfCar, maxSpeed)
+        {
+            Driver = driver;
+        }
+
+        public RaceCar(ModelOfCar modelOfCar, int maxSpeed, Driver driver, int year)
+             : this(modelOfCar, maxSpeed, driver)
+        {
+            Year = year;
+        }
+
         /// <summary>
         /// Some info about Driver(s).
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return "Driver: " + Driver.Name + ". His car is " + ModelOfCar + ". Max speed: " + MaxSpeed; 
+            return "Driver: " + Driver.Name + ". His car is " + ModelOfCar + ". Max speed: " + MaxSpeed + ". Year(" + Year + ")";
         }
     }
 }

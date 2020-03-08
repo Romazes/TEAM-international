@@ -19,7 +19,7 @@ namespace Practice_1
             else
             {
                 result.IsSuccess = false;
-                result.FailedRaceInformation = ("Not all race cars met the criteria to start race. No race occurred.");
+                result.FailedRaceInformation = ("Not all race cars met the criteria to start race. Check his Max Speed or Car's year.");
             }
             return result;
         }
@@ -33,9 +33,7 @@ namespace Practice_1
                 var racingCars = new List<RaceCar>(raceCars);
 
                 var winningCar = racingCars.OrderByDescending(c => c.MaxSpeed).ToList()[0];
-                var sameSpeedCars = racingCars.Where(c => c.MaxSpeed == winningCar.MaxSpeed && c.Driver.Name != winningCar.Driver.Name).ToList();
-                racingCars.ForEach(c => Console.WriteLine(c.Driver.Name));
-               
+                var sameSpeedCars = racingCars.Where(c => c.MaxSpeed == winningCar.MaxSpeed && c.Driver.Name != winningCar.Driver.Name).ToList();               
                 //Notify?.Invoke($"On start are {raceCar1.Driver.Name} on {raceCar1.ModelOfCar.ToString()}({raceCar1.MaxSpeed}) VS {raceCar2.Driver.Name} on {raceCar2.ModelOfCar.ToString()}({raceCar2.MaxSpeed})");
                 if (sameSpeedCars.Any())
                 {
