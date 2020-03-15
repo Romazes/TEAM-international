@@ -8,18 +8,18 @@ namespace Practice_2
     {
         static void Main(string[] args)
         {
-            //FactorialAndFibonacci factorialAndFibonacci = new FactorialAndFibonacci();
-            //factorialAndFibonacci.Notify += DisplayMessage;
-            //try
-            //{
-            //    factorialAndFibonacci.Fibonacci(10);
-            //    factorialAndFibonacci.Factorial(5);
-            //}
-            //catch(Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
-
+            FactorialAndFibonacci factorialAndFibonacci = new FactorialAndFibonacci();
+            factorialAndFibonacci.Notify += DisplayMessage;
+            try
+            {
+                factorialAndFibonacci.Fibonacci(10);
+                factorialAndFibonacci.Factorial(5);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.WriteLine(new String('-', 50));
             /****************************************************************************************/
 
             List<Car> cars = new List<Car>
@@ -41,13 +41,55 @@ namespace Practice_2
             };
 
             CarHandling car = new CarHandling();
-            //Car.SortingBySpeed(cars);
-            //car.GroupByAlphabet(cars);
-            car.GroupByTestDrive(cars);
-            //car.SortingBySpeed(cars);
-            Console.WriteLine(new string('-',40));
-            car.GroupByTestDriveScoreAndNameCar(cars);
+            DisplayCollection(cars);
+            int userInput;
+            string userString;
+            userString = Console.ReadLine();
+            int.TryParse(userString, out userInput);
 
+            while(userInput != 0)
+            {
+
+                switch (userInput)
+                {
+                    case 1:
+                        car.SortingBySpeed(cars);
+                        break;
+                    case 2:
+                        car.GroupByAlphabet(cars);
+                        break;
+                    case 3:
+                        car.GroupByTestDrive(cars);
+                        break;
+                    case 4:
+                        car.GroupByTestDriveScoreAndNameCar(cars);
+                        break;
+                    case 5:
+                        Console.Clear();
+                        break;
+                    default:
+                        break;
+                }
+                userString = Console.ReadLine();
+                int.TryParse(userString, out userInput);
+            }
+
+            Console.WriteLine(new String('-', 50));
+            /****************************************************************************************/
+            Random rnd = new Random();
+            List<int> numb = Enumerable.Repeat(0, 50).Select(i => rnd.Next(0, 20)).ToList();
+
+            var oo = SplittingArray.Split(numb);
+
+            foreach (var carGroup in oo)
+            {
+                Console.WriteLine($"Even numbers ? - {carGroup.Key}");
+                foreach (var item in carGroup)
+                {
+                    Console.Write($"{item} ");
+                }
+                Console.WriteLine();
+            }
 
         }
 
@@ -55,5 +97,11 @@ namespace Practice_2
         {
             Console.WriteLine(message);
         }
+        private static void DisplayCollection(List<Car> templist)
+        {
+            foreach (var item in templist)
+                Console.WriteLine(item);
+        }
     }
+
 }

@@ -6,6 +6,10 @@ namespace Practice_2
 {
     class CarHandling : Car
     {
+        /// <summary>
+        /// Sorting Cars by speed
+        /// </summary>
+        /// <param name="cars"></param>
         public void SortingBySpeed(List<Car> cars)
         {
             var lowToUpeerSpeed = from temp in cars
@@ -18,6 +22,10 @@ namespace Practice_2
             }
         }
 
+        /// <summary>
+        /// Grouping car Name by Alphabet
+        /// </summary>
+        /// <param name="cars"></param>
         public void GroupByAlphabet(List<Car> cars)
         {
             var queryFirstLetters = from car in cars
@@ -36,6 +44,10 @@ namespace Practice_2
             }
         }
 
+        /// <summary>
+        /// Grouping car by Test Drive Score
+        /// </summary>
+        /// <param name="cars"></param>
         public void GroupByTestDrive(List<Car> cars)
         {
             var rangeNumber = from car in cars
@@ -54,6 +66,10 @@ namespace Practice_2
             }
         }
 
+        /// <summary>
+        /// Grouping car by Test Drive Score and Alphabet
+        /// </summary>
+        /// <param name="cars"></param>
         public void GroupByTestDriveScoreAndNameCar(List<Car> cars)
         {
             var queryTestDriveScore = from car in cars
@@ -75,5 +91,12 @@ namespace Practice_2
                 }
             }
         }
+
+        protected static double GetAverageTestDrive(Car car)
+        {
+            double avg = car.TestDriveScore.Average();
+            return avg > 0.0 ? avg : 0.0;
+        }
+
     }
 }

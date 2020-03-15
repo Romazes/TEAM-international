@@ -12,12 +12,6 @@ namespace Practice_2
         public bool Autopilot { get; set; } = false;
         public List<double> TestDriveScore;
 
-        protected static double GetAverageTestDrive(Car car)
-        {
-            double avg = car.TestDriveScore.Average();
-            return avg > 0.0 ? avg : 0.0;
-        }
-
         public override string ToString()
         {
             return "Car: " + NameCar + " - " + ColorCar + ". MAX SPEED: " + MaxSpeed;
