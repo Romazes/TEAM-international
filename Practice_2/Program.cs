@@ -21,7 +21,9 @@ namespace Practice_2
             }
             Console.WriteLine(new String('-', 50));
             /****************************************************************************************/
-
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("We have collection of Cars:");
+            Console.ResetColor();
             List<Car> cars = new List<Car>
             {
                 new Car { NameCar = "Honda", ColorCar = Color.Black, MaxSpeed = 100, Autopilot = false,
@@ -44,12 +46,19 @@ namespace Practice_2
             DisplayCollection(cars);
             int userInput;
             string userString;
-            userString = Console.ReadLine();
-            int.TryParse(userString, out userInput);
 
-            while(userInput != 0)
+            Console.WriteLine("What do you want to do with this collection?");
+            Console.WriteLine("Please choose from this list:");
+            Console.WriteLine("1: Sorting by Speed");
+            Console.WriteLine("2: Group by Alphabet");
+            Console.WriteLine("3: Group by Test Drive Score");
+            Console.WriteLine("4: Group by Test Druve Scroe and Alphabet's Title Car");
+            Console.WriteLine("5: Console will be clear");
+            Console.WriteLine("0: Exit");
+            do
             {
-
+                userString = Console.ReadLine();
+                int.TryParse(userString, out userInput);
                 switch (userInput)
                 {
                     case 1:
@@ -68,17 +77,30 @@ namespace Practice_2
                         Console.Clear();
                         break;
                     default:
-                        break;
+                        if (userInput == 0)
+                            break;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid input! Try again.");
+                        Console.ResetColor();
+                        continue;
                 }
-                userString = Console.ReadLine();
-                int.TryParse(userString, out userInput);
-            }
+            } while (userInput != 0);
 
             Console.WriteLine(new String('-', 50));
             /****************************************************************************************/
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("4 Task");
+            Console.ResetColor();
             Random rnd = new Random();
+            Console.WriteLine("We have the random List<int>:");
             List<int> numb = Enumerable.Repeat(0, 50).Select(i => rnd.Next(0, 20)).ToList();
-
+            foreach (var item in numb)
+            {
+                Console.Write(item + " ");
+            }
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nNow, we use unique opportunity of Linq will create 2 subList(Odd and Even - number): ");
+            Console.ResetColor();
             var oo = SplittingArray.Split(numb);
 
             foreach (var carGroup in oo)

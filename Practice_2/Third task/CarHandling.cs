@@ -83,7 +83,7 @@ namespace Practice_2
 
             foreach (var scoreCar in queryTestDriveScore)
             {
-                string s = scoreCar.Key.TestDriveScore == true ? "more than" : "less than";
+                string s = scoreCar.Key.TestDriveScore == true ? ">" : "<";
                 Console.WriteLine($"Name starts with {scoreCar.Key.FirstLetter} who scored {s} 3");
                 foreach (var item in scoreCar)
                 {
