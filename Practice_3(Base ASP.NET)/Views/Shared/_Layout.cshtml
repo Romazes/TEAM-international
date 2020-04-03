@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFood</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="~/css/dashboard.css">
+    <link rel="stylesheet" href="~/css/style.css">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow" style="background-color: rgb(255,203,94);">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+                <i class="fas fa-leaf" style="color: darkgreen;"></i> iFood
+            </a>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block sidebar" style="background-color: #ffcb5e;">
+                <div class="sidebar-sticky">
+                    <!--Menu-->
+                    <ul class="nav flex-column nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" data-filter="*">
+                                <i class="fas fa-align-right"></i>
+                                All Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter=".fruit">
+                                <i class="fas fa-apple-alt"></i>
+                                Fruit
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter=".vegetables">
+                                <i class="fas fa-carrot"></i>
+                                Vegetables
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter=".meatandpoultry">
+                                <i class="fas fa-drumstick-bite"></i>
+                                Meat & Poultry
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter=".seafood">
+                                <i class="fas fa-fish"></i>
+                                Seafood
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter=".dairy">
+                                <i class="fas fa-flask"></i>
+                                Dairy
+                            </a>
+                        </li>
+                        <li class="nav-item pill-notavailable">
+                            <a class="nav-link disabled" href="#" title="in designing">
+                                <i class="fas fa-cheese"></i>
+                                Deli & Cheese
+                            </a>
+                        </li>
+                        <li class="nav-item pill-notavailable">
+                            <a class="nav-link disabled" href="#" title="in designing">
+                                <i class="fas fa-beer"></i>
+                                Beer & Cider
+                            </a>
+                        </li>
+                    </ul>
+                    <!--My logo-->
+                    <div class="card p-0 m-1">
+                        <img class="card-img" src="img/subzero.png" alt="Developer Ramzes">
+                        <div class="card-img-overlay p-2">
+                            <a class="card-title h3 mysociallink" href="https://github.com/Romazes" target="blank">
+                                <i class="fab fa-github-square"></i>
+                            </a>
+                            <br>
+                            <a class="card-title h3 mysociallink" href="https://www.instagram.com/romazes20"
+                               target="blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="~/js/isotope.pkgd.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script src="~/js/main.js"></script>
+</body>
+</html>
