@@ -1,0 +1,33 @@
+﻿@model SimpleViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<!--<a asp-action="AddEmployee" class="btn btn-primary mt-5 mb-5">Add new employee</a>-->
+<div class="table-responsive">
+    <table class="table mt-5">
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        @foreach (var e in Model.ViewProducts)
+        {
+            <tr>
+                <td>@e.Title</td>
+                <td>@e.Category</td>
+                <td>@e.Amount</td>
+                <td>
+                    <a asp-action="EditEmployee" asp-route-id="@e.Id" class="btn btn-primary">Edit</a>
+                </td>
+                <td>
+                    <a asp-action="RemoveProduct" asp-route-id="@e.Id"
+                       class="btn btn-primary" onclick="return confirm('Are you sure to remove selected employee?');">
+                        Remove
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

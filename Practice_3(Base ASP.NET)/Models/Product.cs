@@ -10,6 +10,16 @@ namespace Practice_3_Base_ASP.NET_.Models
     {
         [Key] public int Id { get; set; }
         public string Title { get; set; }
-        public string Amount { get; set; }
+        public int Amount { get; set; }
+        //public string Category { get; set; }
+        [Required] public ProductCategory Category { get; set; }
+
+        public Product(int id, string title, int amount, ProductCategory category)
+        {
+            Id = id;
+            Title = title;
+            Amount = amount;
+            Category = category;
+        }
     }
 }
