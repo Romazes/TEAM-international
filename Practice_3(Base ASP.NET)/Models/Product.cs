@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Practice_3_Base_ASP.NET_.Models
 {
     public class Product
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "Please, enter the Title of Product.")]
         public string Title { get; set; }
+        [Required]
+        [Range(1.0, 100.0, ErrorMessage = "Please, enter only positive Number.")]
         public int Amount { get; set; }
-        //public string Category { get; set; }
+        [Required(ErrorMessage ="Please, choose Metric Units for Product.")]
+        public ProductMetricUnits MetricUnit { get; set; }
+        [Required(ErrorMessage = "Please, choose Category for Product.")]
         public ProductCategory Category { get; set; }
 
         public Product()
-        {
-
-        }
+        {}
 
         public Product(int id, string title, int amount, ProductCategory category)
         {
@@ -25,6 +24,12 @@ namespace Practice_3_Base_ASP.NET_.Models
             Title = title;
             Amount = amount;
             Category = category;
+        }
+
+        public Product(int id, string title, int amount, ProductCategory category,
+                       ProductMetricUnits metricUnit) : this(id, title, amount, category)
+        {
+            MetricUnit = metricUnit;
         }
     }
 }

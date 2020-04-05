@@ -11,10 +11,25 @@ namespace Practice_3_Base_ASP.NET_.Models
 
         static ProductMock()
         {
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 3; i++)
             {
-                Baskets.Add(new Product(i + 1, $"Tomato {i + 1}", 20 + i, 
-                    (ProductCategory) new Random().Next(0, Enum.GetNames(typeof(ProductCategory)).Length)));
+                Baskets.Add(new Product(i + 1, $"Tomato {i + 1}", 20 + i,
+                    (ProductCategory)new Random().Next(0, Enum.GetNames(typeof(ProductCategory)).Length),
+                    (ProductMetricUnits)new Random().Next(0, Enum.GetNames(typeof(ProductMetricUnits)).Length)));
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Baskets.Add(new Product(i + 1, $"Milk {i + 1}", 20 + i,
+                    (ProductCategory)new Random().Next(0, Enum.GetNames(typeof(ProductCategory)).Length),
+                    (ProductMetricUnits)new Random().Next(0, Enum.GetNames(typeof(ProductMetricUnits)).Length)
+                    ));
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Baskets.Add(new Product(i + 1, $"Tasty {i + 1}", 20 + i,
+                    (ProductCategory)new Random().Next(0, Enum.GetNames(typeof(ProductCategory)).Length),
+                    (ProductMetricUnits)new Random().Next(0, Enum.GetNames(typeof(ProductMetricUnits)).Length)
+                    ));
             }
         }
     }
@@ -39,12 +54,15 @@ namespace Practice_3_Base_ASP.NET_.Models
         public readonly string Title;
         public readonly int Amount;
         public readonly string Category;
+        public readonly string MetricUnits;
 
-        public SimpleViewItem(int id, string title, int amount, string category)
+        public SimpleViewItem(int id, string title, int amount, string category, 
+                              string metricUnits)
         {
             Id = id;
             Title = title;
             Amount = amount;
+            MetricUnits = metricUnits;
             Category = category;
         }
     }

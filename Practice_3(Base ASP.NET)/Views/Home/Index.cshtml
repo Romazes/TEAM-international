@@ -3,9 +3,6 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2"></h1>
-</div>
 <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="grid">
         @foreach (var e in Model.ViewProducts)
@@ -20,7 +17,7 @@
                     <div class="block2-txt-child1 flex-col-l ">
                         <a class="stext-104 cl4 hov-cl1 trans-04 p-b-6" href="#">@e.Title - @e.Category</a>
                         <span class="stext-105 cl3">
-                            @e.Amount
+                            @e.Amount - @e.MetricUnits
                         </span>
                     </div>
                 </div>
