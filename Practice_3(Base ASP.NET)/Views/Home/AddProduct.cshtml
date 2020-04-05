@@ -1,0 +1,21 @@
+﻿@model Product
+<h5>Add new Product</h5>
+<div class="col-md-7 m-auto">
+    <form asp-controller="Home" asp-action="AddProduct" class="mt-4 mb-4">
+        <div class="form-group mt-4">
+            <h6>Title</h6>
+            <input asp-for="Title" class="form-control"/>
+        </div>
+        <div class="form-group mt-4">
+            <h6>Amount</h6>
+            <input asp-for="Amount" class="form-control"/>
+        </div>
+        <div class="form-group mt-4">
+            <h6>Category</h6>
+            <select asp-for="Category" class="custom-select" asp-items="ViewBag.Category"></select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-5">
+            Add product
+        </button>
+    </form>
+</div>

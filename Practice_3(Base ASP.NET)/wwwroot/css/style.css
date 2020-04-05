@@ -242,3 +242,24 @@ a.mysociallink {
     .mybutton-success:hover {
         background-color: rgb(0, 100, 0);
     }
+/**************************************************************************************************/
+/*SweetAlert*/
+.swal-icon.swal-icon--warning {
+    animation-name: icon-swal;
+}
+
+.swal-icon--warning__body, .swal-icon--warning__dot {
+    background-color: black;
+}
+
+@keyframes icon-swal {
+    0% {
+        border-color: rgb(255,203,94);
+        background-color: #fffaef;
+    }
+
+    100% {
+        border-color: rgb(255,203,94);
+        background-color: #fffaef;
+    }
+}
