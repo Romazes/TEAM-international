@@ -1,0 +1,25 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "DiscoverProduct";
+}
+<div id="content-over">
+    <div class="shape"></div>
+</div>
+<div class="pt-3 pb-2 mb-3 border-bottom" style="position: relative;">
+    <h1 class="h2">@Model.Category</h1>
+</div>
+<div class="containe">
+    <div class="row no-gutters position-relative">
+        <div class="col-md-6 mb-md-0 p-md-4">
+            <img src="~/img/fruit/apple.jpg" class="w-100" alt="Apple">
+        </div>
+        <div class="col-md-6 position-static p-4 pl-md-0">
+            <h5 class="mt-0">@Model.Title</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">@Model.Amount - @Model.MetricUnit</li>
+            </ul>
+            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+            <a href="#" class="btn btn-success mybutton">Add to Cart</a>
+        </div>
+    </div>
+</div>

@@ -12,19 +12,19 @@ namespace Practice_3_Base_ASP.NET_.Models
         {
             for (int i = 0; i < 1; i++)
             {
-                Baskets.Add(Seed("Tomato", 200));
-                Baskets.Add(Seed("Potato", 200));
-                Baskets.Add(Seed("Apple", 200));
-                Baskets.Add(Seed("Milk", 200));
-                Baskets.Add(Seed("Crab", 200));
-                Baskets.Add(Seed("Meat", 200));
+                Baskets.Add(Seed("Tomato", 200, 1));
+                Baskets.Add(Seed("Potato", 200, 1));
+                Baskets.Add(Seed("Apple", 200, 0));
+                Baskets.Add(Seed("Milk", 200, 4));
+                Baskets.Add(Seed("Crab", 200, 3));
+                Baskets.Add(Seed("Meat", 200, 2));
             }
         }
 
-        static Product Seed(string name, double amount)
+        static Product Seed(string name, double amount, int numberOfCategory)
         {
             return new Product (new Random().Next(0, 100), $"{name}", amount,
-                    (ProductCategory)new Random().Next(0, Enum.GetNames(typeof(ProductCategory)).Length),
+                    (ProductCategory)numberOfCategory,
                     (ProductMetricUnits)new Random().Next(0, Enum.GetNames(typeof(ProductMetricUnits)).Length));
         }
     }

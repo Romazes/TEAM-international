@@ -10,12 +10,15 @@
             <div class="col block2 grid-item @e.Category" style="width: 15rem;">
                 <div class="block2-pic hov-img0">
                     <img src="~/img/fruit/apple.jpg" alt="@e.Category">
-                    <a asp-action="DiscoverTea" asp-controller="Home" asp-route-TeaId="@e.Id"
+                    <a asp-action="DiscoverProduct" asp-controller="Home" asp-route-id="@e.Id"
                        class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">View</a>
                 </div>
                 <div class="flex-w flex-t p-t-14">
                     <div class="block2-txt-child1 flex-col-l ">
-                        <a class="stext-104 cl4 hov-cl1 trans-04 p-b-6" href="#">@e.Title - @e.Category</a>
+                        <a class="stext-104 cl4 hov-cl1 trans-04 p-b-6"
+                           asp-action="DiscoverProduct" asp-route-id="@e.Id">
+                            @e.Title - @e.Category
+                        </a>
                         <span class="stext-105 cl3">
                             @e.Amount - @e.MetricUnits
                         </span>
@@ -24,7 +27,7 @@
                 <div class="btn-group" style="width:100%">
                     <a asp-action="EditProduct" asp-route-id="@e.Id" class="btn btn-outline-dark btn-sm">Edit</a>
                     <a asp-action="RemoveProduct" asp-route-id="@e.Id" onclick="return confirm('Are you sure to remove selected Product?');"
-                            class="btn btn-outline-danger btn-sm">Remove</a>
+                       class="btn btn-outline-danger btn-sm">Remove</a>
                 </div>
             </div>
         }

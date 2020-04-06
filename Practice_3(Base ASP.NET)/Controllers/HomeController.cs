@@ -24,12 +24,29 @@ namespace Practice_3_Base_ASP.NET_.Controllers
             Enum.GetName(typeof(ProductCategory), e.Category),
             Enum.GetName(typeof(ProductMetricUnits), e.MetricUnit))).OrderBy(e => e.Category).ToList()));
 
+
+
         public IActionResult RemoveProduct(int id)
         {
             if (ProductMock.Baskets.All(e => e.Id != id)) return RedirectToAction("Index");
             ProductMock.Baskets.Remove(ProductMock.Baskets.First(e => e.Id == id));
             return RedirectToAction("Index");
         }
+
+        //[HttpGet]
+        //[Route("home/DiscoverProduct/{id?}")]
+        //public IActionResult DiscoverProduct(int id)
+        //{
+        //    return View(ProductMock.Baskets.Any(t => t.Id == id));
+        //    //return ProductMock.Baskets.Any(e => e.Id == id)
+        //    //    ? View(ProductMock.Baskets.First(e => e.Id == id))
+        //    //    : (IActionResult)RedirectToAction("Index");
+        //    //View(repository.Teas.Include(p => p.TeaImageCollections).FirstOrDefault(p => p.TeaID == TeaID));
+        //}
+
+        [Route("home/DiscoverProduct/{id?}")]
+        public ViewResult DiscoverProduct(int id) =>
+            View(ProductMock.Baskets.FirstOrDefault(p => p.Id == id));
 
         [HttpGet]
         [Route("home/EditProduct/{id?}")]
