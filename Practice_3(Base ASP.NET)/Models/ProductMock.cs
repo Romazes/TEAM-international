@@ -8,39 +8,26 @@ namespace Practice_3_Base_ASP.NET_.Models
     public static class ProductMock
     {
         public static readonly List<Product> Baskets = new List<Product>();
-
         static ProductMock()
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 1; i++)
             {
-                Baskets.Add(new Product(i + 1, $"Tomato {i + 1}", 20 + i,
-                    (ProductCategory)new Random().Next(0, Enum.GetNames(typeof(ProductCategory)).Length),
-                    (ProductMetricUnits)new Random().Next(0, Enum.GetNames(typeof(ProductMetricUnits)).Length)));
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                Baskets.Add(new Product(i + 1, $"Milk {i + 1}", 20 + i,
-                    (ProductCategory)new Random().Next(0, Enum.GetNames(typeof(ProductCategory)).Length),
-                    (ProductMetricUnits)new Random().Next(0, Enum.GetNames(typeof(ProductMetricUnits)).Length)
-                    ));
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                Baskets.Add(new Product(i + 1, $"Tasty {i + 1}", 20 + i,
-                    (ProductCategory)new Random().Next(0, Enum.GetNames(typeof(ProductCategory)).Length),
-                    (ProductMetricUnits)new Random().Next(0, Enum.GetNames(typeof(ProductMetricUnits)).Length)
-                    ));
+                Baskets.Add(Seed("Tomato", 200));
+                Baskets.Add(Seed("Potato", 200));
+                Baskets.Add(Seed("Apple", 200));
+                Baskets.Add(Seed("Milk", 200));
+                Baskets.Add(Seed("Crab", 200));
+                Baskets.Add(Seed("Meat", 200));
             }
         }
-    }
 
-    //public class Basket
-    //{
-    //    public int Id { get; set; }
-    //    public string Title { get; set; }
-    //    public string Amount { get; set; }
-    //    public string  Category { get; set; }
-    //}
+        static Product Seed(string name, double amount)
+        {
+            return new Product (new Random().Next(0, 100), $"{name}", amount,
+                    (ProductCategory)new Random().Next(0, Enum.GetNames(typeof(ProductCategory)).Length),
+                    (ProductMetricUnits)new Random().Next(0, Enum.GetNames(typeof(ProductMetricUnits)).Length));
+        }
+    }
 
     public class SimpleViewModel
     {
@@ -52,11 +39,11 @@ namespace Practice_3_Base_ASP.NET_.Models
     {
         public readonly int Id;
         public readonly string Title;
-        public readonly int Amount;
+        public readonly double Amount;
         public readonly string Category;
         public readonly string MetricUnits;
 
-        public SimpleViewItem(int id, string title, int amount, string category, 
+        public SimpleViewItem(int id, string title, double amount, string category, 
                               string metricUnits)
         {
             Id = id;

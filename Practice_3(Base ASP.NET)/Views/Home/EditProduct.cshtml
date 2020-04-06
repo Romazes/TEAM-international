@@ -5,32 +5,41 @@
 <div class="pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">@ViewBag.Title</h1>
 </div>
-<form asp-action="EditProduct" method="post" class="mt-4 mb-4">
+<form asp-action="EditProduct" method="post" class="mt-4 mb-4 needs-validation" novalidate>
     @Html.HiddenFor(e => e.Id)
-    <div class="form-group mt-4">
-        <h6>Title</h6>
-        <input asp-for="Title" class="form-control" required />
-        <div><span asp-validation-for="Title" class="text-danger"></span></div>
+    <div class="form-row mt-4">
+        <div class="col-md-6 mb-3">
+            <label for="validationCustom01">Title</label>
+            <input asp-for="Title" type="text" class="form-control" id="validationCustom01" placeholder="Title" required>
+            <div class="invalid-feedback">Please, enter Title of Product.</div>
+            <div><span asp-validation-for="Title" class="text-danger"></span></div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputState">Category</label>
+            <select asp-for="Category" class="custom-select" asp-items="ViewBag.Category" required>
+                <option value="">-</option>
+            </select>
+            <div class="invalid-feedback">Please, choose Category for Product.</div>
+            <div><span asp-validation-for="Category" class="text-danger"></span></div>
+        </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputCity">Amount</label>
-            <input asp-for="Amount" type="text" class="form-control" id="inputAmount" required>
+        <div class="col-md-6 mb-3">
+            <label for="validationCustom01">Amount</label>
+            <input asp-for="Amount" type="text" class="form-control" id="validationCustom01" placeholder="0" required>
+            <div class="invalid-feedback">Please, enter Amount of Product.</div>
             <div><span asp-validation-for="Amount" class="text-danger"></span></div>
         </div>
         <div class="form-group col-md-6">
-            <label for="inputState">Metric Units</label>
-            <select asp-for="MetricUnit" asp-items="ViewBag.MetricUnit" class="custom-select">
+            <label for="inputState">Units</label>
+            <select asp-for="MetricUnit" asp-items="ViewBag.MetricUnit" class="custom-select" required>
+                <option value="">-</option>
             </select>
+            <div class="invalid-feedback">Please, choose Metric Units for Product.</div>
             <div><span asp-validation-for="MetricUnit" class="text-danger"></span></div>
         </div>
     </div>
-    <div class="form-group mt-4">
-        <h6>Category</h6>
-        <select asp-for="Category" class="custom-select" asp-items="ViewBag.Category"></select>
-        <div><span asp-validation-for="Category" class="text-danger"></span></div>
-    </div>
     <button type="submit" class="btn btn-primary mt-5">
-        Edit product
+        Update Product
     </button>
 </form>

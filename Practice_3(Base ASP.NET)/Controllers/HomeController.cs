@@ -11,6 +11,12 @@ namespace Practice_3_Base_ASP.NET_.Controllers
 {
     public class HomeController : Controller
     {
+        private IProductsService _service;
+        public HomeController(IProductsService service)
+        {
+            _service = service;
+        }
+
         [HttpGet]
         public IActionResult Index() =>
             View(new SimpleViewModel(ProductMock.Baskets.Select(e =>

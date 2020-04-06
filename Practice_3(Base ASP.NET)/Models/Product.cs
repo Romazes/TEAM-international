@@ -8,8 +8,8 @@ namespace Practice_3_Base_ASP.NET_.Models
         [Required(ErrorMessage = "Please, enter the Title of Product.")]
         public string Title { get; set; }
         [Required]
-        [Range(1.0, 100.0, ErrorMessage = "Please, enter only positive Number.")]
-        public int Amount { get; set; }
+        [Range(0.1, double.MaxValue, ErrorMessage = "Please, enter only positive Number.")]
+        public double Amount { get; set; }
         [Required(ErrorMessage ="Please, choose Metric Units for Product.")]
         public ProductMetricUnits MetricUnit { get; set; }
         [Required(ErrorMessage = "Please, choose Category for Product.")]
@@ -18,7 +18,7 @@ namespace Practice_3_Base_ASP.NET_.Models
         public Product()
         {}
 
-        public Product(int id, string title, int amount, ProductCategory category)
+        public Product(int id, string title, double amount, ProductCategory category)
         {
             Id = id;
             Title = title;
@@ -26,7 +26,7 @@ namespace Practice_3_Base_ASP.NET_.Models
             Category = category;
         }
 
-        public Product(int id, string title, int amount, ProductCategory category,
+        public Product(int id, string title, double amount, ProductCategory category,
                        ProductMetricUnits metricUnit) : this(id, title, amount, category)
         {
             MetricUnit = metricUnit;

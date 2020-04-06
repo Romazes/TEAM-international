@@ -6,58 +6,41 @@
     <h1 class="h2">@ViewBag.Title</h1>
 </div>
 
-
-
-
-
 <form asp-controller="Home" asp-action="AddProduct" class="mt-4 mb-4 needs-validation" novalidate>
-    <div class="form-group mt-4">
-        <label for="validationCustom03">Title</label>
-        <input asp-for="Title" type="text" class="form-control" id="validationCustom03" placeholder="Tittle of Product" required>
-        <div class="invalid-feedback">
-            Please, write Title of Product.
+    <div class="form-row mt-4">
+        <div class="col-md-6 mb-3">
+            <label for="validationCustom01">Title</label>
+            <input asp-for="Title" type="text" class="form-control" id="validationCustom01" placeholder="Title" required>
+            <div class="invalid-feedback">Please, enter Title of Product.</div>
+            <div><span asp-validation-for="Title" class="text-danger"></span></div>
         </div>
-        @*<div><span asp-validation-for="Title" class="text-danger"></span></div>*@
+        <div class="form-group col-md-6">
+            <label for="inputState">Category</label>
+            <select asp-for="Category" class="custom-select" asp-items="ViewBag.Category" required>
+                <option value="">-</option>
+            </select>
+            <div class="invalid-feedback">Please, choose Category for Product.</div>
+            <div><span asp-validation-for="Category" class="text-danger"></span></div>
+        </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputCity">Amount</label>
-            <input asp-for="Amount" type="text" class="form-control" id="inputAmount" required>
+        <div class="col-md-6 mb-3">
+            <label for="validationCustom01">Amount</label>
+            <input asp-for="Amount" type="text" class="form-control" id="validationCustom01" placeholder="0" required>
+            <div class="invalid-feedback">Please, enter Amount of Product.</div>
             <div><span asp-validation-for="Amount" class="text-danger"></span></div>
         </div>
         <div class="form-group col-md-6">
-            <label for="inputState">Metric Units</label>
-            <select asp-for="MetricUnit" asp-items="ViewBag.MetricUnit" class="custom-select">
+            <label for="inputState">Units</label>
+            <select asp-for="MetricUnit" asp-items="ViewBag.MetricUnit" class="custom-select" required>
+                <option value="">-</option>
             </select>
+            <div class="invalid-feedback">Please, choose Metric Units for Product.</div>
             <div><span asp-validation-for="MetricUnit" class="text-danger"></span></div>
         </div>
     </div>
-    <div class="form-group mt-4">
-        <h6>Category</h6>
-        <select asp-for="Category" class="custom-select" asp-items="ViewBag.Category"></select>
-        <div><span asp-validation-for="Category" class="text-danger"></span></div>
-    </div>
+
     <button type="submit" class="btn btn-primary mt-5">
-        Add product
+        Add Product
     </button>
 </form>
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function () {
-        'use strict';
-        window.addEventListener('load', function () {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-</script>
